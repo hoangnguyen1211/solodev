@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
-import { GREEN_COLOR, WHITE_COLOR, GRAY_COLOR, BLACK_COLOR } from '../../constants/ColorConstants';
+import React, { PureComponent } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { GREEN_COLOR, WHITE_COLOR, BLACK_COLOR } from '../../constants/ColorConstants';
 import { FONT_TEXT } from '../../constants/FontConstants';
 import { Icon } from 'react-native-elements';
 
-export default class CheckBoxAnswer extends Component {
+export default class CheckBoxAnswer extends PureComponent {
 
     constructor(props) {
         super(props);
@@ -22,22 +22,38 @@ export default class CheckBoxAnswer extends Component {
 
     _onSelected = (item, index) => {
         const { renderItems } = this.state;
-        const array = [];
-        // const { funcHandler } = this.props;
-        const result = renderItems.map((element, eleIndex) => {
+        const { funcHandler } = this.props;
+        let result = true;
+
+        // Hàm cập nhật lại trạng thái checked cho từng phần tử
+        // Trả về mảng mới sau khi người dùng click vào checkbox
+        const newArray = renderItems.map((element, eleIndex) => {
+            // Kiểm tra vị trí người dùng đang click => Cập nhật lại trạng thái checked
             if (eleIndex === index) {
+                // Kiểm tra lựa chọn của user đáp án xem có giống với không
                 return { ...element, checked: !element.checked }
             }
-            return element;
+            // Nếu không trùng vị trí index thì không cập nhật
+            return { ...element, checked: (element.checked ? element.checked : false) }
         });
+        // Cập nhật lại mảng
         this.setState({
-            renderItems: result
+            renderItems: newArray
         });
-        // funcHandler(item.status);
+        
+        for(let i = 0; i < newArray.length; i++){
+            if(newArray[i].checked !== JSON.parse(newArray[i].status)){
+                result = false;
+                break;
+            }
+        }
+        funcHandler(result);
     }
 
     render() {
         const { renderItems } = this.state;
+        console.log('TEST');
+        
         return (
             <View style={styles.container}>
                 {

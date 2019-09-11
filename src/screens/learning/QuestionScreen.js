@@ -5,36 +5,41 @@ import { BLACK_COLOR } from '../../constants/ColorConstants';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/QuestionAction';
 import { ButtonQuestion, ProcessBar } from '../../components/question';
-import { EXERCISE_SCREEN } from '../../constants/ScreenConstants';
 import { AsyncStorageGetData } from '../../asyncstorage/AsyncStorage';
-import { LESSON_ID } from '../../constants/StorageConstants';
+import { LESSON_ID, QUESTION_INDEX } from '../../constants/StorageConstants';
 
 class QuestionScreen extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            question: {}
-        }
     }
 
     componentDidMount = async () => {
-        const { question, getQuestionByIndex, getListQuestionByLessonId } = this.props;
-        AsyncStorageGetData(LESSON_ID)
-        .then((lessonId) => {
-            getListQuestionByLessonId(lessonId);
-            this.setState({ question: question });
-            getQuestionByIndex(1);
-        })
-        .catch(error => console.log(error));
+        const { getListQuestionByLessonId, currentIndex } = this.props;
+        if(currentIndex === 0){
+            AsyncStorageGetData(LESSON_ID)
+            .then(lessonId => {
+                getListQuestionByLessonId(lessonId);
+            })
+            .catch(error => console.log(error));
+        }
     }
 
     _onToExercise = () => {
-        const { navigation } = this.props;
-        navigation.navigate(EXERCISE_SCREEN);
+        const { navigation, question } = this.props;
+        switch (question.type) {
+            case 'single':
+                return navigation.navigate('SingleAnswerScreen');
+            case 'multi':
+                return navigation.navigate('MultiAnswerScreen');
+            case 'drag':
+                return navigation.navigate('');
+            default:
+                break;
+        }
     }
 
     render() {
-        const { question } = this.state;
+        const { question } = this.props;
         return (
             <View style={styles.container}>
                 <ProcessBar widthBar={10} />
@@ -42,6 +47,7 @@ class QuestionScreen extends Component {
                     <Text style={styles.documentStyle}>
                         {question ? question.document : ""}
                     </Text>
+
                 </View>
                 <ButtonQuestion
                     iconName="arrow-right"
@@ -74,8 +80,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
+    console.log(state);
+    
     return {
-        question: state.questionReducer.question
+        question: state.questionReducer.question,
+        currentIndex: state.questionReducer.currentIndex
     }
 }
 

@@ -2,21 +2,40 @@ import * as types from '../constants/QuestionType';
 
 const initialState = {
     listQuestion: [],
-    question: {}
+    question: {},
+    listCount: 0,
+    currentIndex: 0
 }
 
 const questionReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.FECTH_QUESTION_SUCCESS:
-            console.log("GET ALL");
-            
-            return { ...state, listQuestion: action.payload.data };
+            const { data } = action.payload;
+            return { 
+                ...state, 
+                listQuestion: data,
+                listCount: data.length
+            };
         case types.FECTH_QUESTION_ERROR:
             return {...state};
         case types.FECTH_QUESTION_BY_INDEX:
-                console.log("GET BY ID");
-            const array = state.listQuestion.filter((item, index) => index === action.payload.index);
-            return { ...state, question: array[0] };
+            let question = {};
+            state.listQuestion.forEach((item, index) => {
+                if(index === action.payload.index) {
+                    question = { ...item };
+                }
+            });
+            return { 
+                ...state, 
+                question,
+                currentIndex: action.payload.index
+            };
+        case types.FECTH_QUESTION_CURRENT:
+                console.log('CURRENT');
+                console.log({ 
+                    ...state
+                });
+            return { ...state};
         default:
             return {...state};
     }

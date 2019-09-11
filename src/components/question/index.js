@@ -4,6 +4,7 @@ import CheckBoxAnswer from './CheckBoxAnswer';
 import ProcessBar from './ProcessBar';
 import QuestionSuccessNotify from './QuestionSuccessNotify';
 import QuestionErrorNotify from './QuestionErrorNotify';
+import DragSortQuestion from './DragSortQuestion';
 
 export {
     ButtonQuestion,
@@ -11,5 +12,6 @@ export {
     CheckBoxAnswer,
     ProcessBar,
     QuestionSuccessNotify,
-    QuestionErrorNotify
+    QuestionErrorNotify,
+    DragSortQuestion
 }

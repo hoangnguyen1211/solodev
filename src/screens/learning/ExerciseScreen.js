@@ -1,14 +1,13 @@
 import React, { Component, createRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import {
-    RadioAnswer, CheckBoxAnswer, ProcessBar,
+    RadioAnswer, CheckBoxAnswer, ProcessBar, DragSortQuestion,
     ButtonQuestion, QuestionSuccessNotify, QuestionErrorNotify
 } from '../../components/question';
 import { FONT_NORMAL } from '../../constants/FontConstants';
 import { SKY_COLOR } from '../../constants/ColorConstants';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/QuestionAction';
-import axios from 'axios';
 
 class ExerciseScreen extends Component {
 
@@ -25,6 +24,7 @@ class ExerciseScreen extends Component {
                 "type": "multi",
                 "status": "false",
                 "explain": "To create a closing tag, we simply include a / sign after the <.",
+                "result": [1, 2, 3, 4],
                 "answers": [
                     {
                         "id": 1,
@@ -175,11 +175,20 @@ class ExerciseScreen extends Component {
         switch (question.type) {
             case "single":
                 return <RadioAnswer
-                        renderItems={question.answers ? question.answers : []}
-                        funcHandler={this._onSelectdAnswer}
-                    />
+                            renderItems={question.answers ? question.answers : []}
+                            funcHandler={this._onSelectdAnswer}
+                        />
             case "multi":
-                return <CheckBoxAnswer renderItems={question.answers ? question.answers : []} />
+                return <CheckBoxAnswer 
+                            renderItems={question.answers ? question.answers : []}
+                            funcHandler={this._onSelectdAnswer}
+                        />
+            case "drag": 
+                return <DragSortQuestion 
+                            renderItems={question.answers ? question.answers : []}
+                            result={question.result}
+                            funcHandler={this._onSelectdAnswer}
+                        />
             default:
                 break;
         }
@@ -194,13 +203,13 @@ class ExerciseScreen extends Component {
                     <Text style={styles.questionStyle}>
                         {question.exercise}
                     </Text>
-                    { this._renderAnswerView(question)}
                 </View>
+                { this._renderAnswerView(question) }
                 <ButtonQuestion
                     iconName="check"
                     disabled={checkedValue === '' ? true : false}
                     funcHandler={this._onAnswerChecked}
-                    backgroundColor={SKY_COLOR}
+                    backgroundColor={ SKY_COLOR }
                     styleContainer={{
                         position: 'absolute',
                         bottom: 40,
@@ -236,7 +245,8 @@ const styles = StyleSheet.create({
         flex: 1
     },
     wrapper: {
-        padding: 20
+        paddingTop: 20,
+        paddingHorizontal: 20
     },
     questionStyle: {
         fontSize: FONT_NORMAL,

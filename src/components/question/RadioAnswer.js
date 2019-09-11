@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { GREEN_COLOR , WHITE_COLOR, BLACK_COLOR, GRAY_COLOR } from '../../constants/ColorConstants';
+import { GREEN_COLOR , WHITE_COLOR, BLACK_COLOR } from '../../constants/ColorConstants';
 import { FONT_TEXT } from '../../constants/FontConstants';
 
 export default class RadioAnswer extends Component {
@@ -12,13 +12,13 @@ export default class RadioAnswer extends Component {
         }
     }
 
-    _onPress = (item, index) => {
+    _onSelected = (item, index) => {
         const { funcHandler } = this.props;
         
         this.setState({
             checkedIndex: index
         });
-        funcHandler(item.status);
+        funcHandler(JSON.parse(item.status));
     }
 
     render(){
@@ -28,7 +28,7 @@ export default class RadioAnswer extends Component {
             <View style={styles.container}>
                 {
                     renderItems.map((item, index) => {
-                        return <TouchableOpacity onPress={() => this._onPress(item, index)} key={index}>
+                        return <TouchableOpacity onPress={() => this._onSelected(item, index)} key={index}>
                             <View style={[styles.itemAnswer, index ===  checkedIndex ? styles.itemChecked :  {} ]}>
                                 <View style={[styles.circle, index ===  checkedIndex ? styles.circleChecked :  {} ]}></View>
                                 <Text style={[styles.itemLabel]}>

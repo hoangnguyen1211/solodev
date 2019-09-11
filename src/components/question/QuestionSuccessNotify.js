@@ -18,11 +18,7 @@ export default class QuestionSuccessNotify extends Component {
         }
     }
 
-    componentDidMount = () => {
-
-    }
-
-    _showSuccessNotify = () => {
+    _showSuccessNotify = (questionIndex) => {
         Animated.timing(this.state.xValue, {
             toValue: 0,
             duration: 500
@@ -47,6 +43,8 @@ export default class QuestionSuccessNotify extends Component {
             toValue: 1,
             duration: 1000
         }).start();
+
+        
     }
 
     _hideSuccessNotify = () => {
@@ -60,6 +58,8 @@ export default class QuestionSuccessNotify extends Component {
             positionIcon: new Animated.Value(60),
             positionLine: new Animated.Value(0)
         });
+
+        this.props.funcHandler();
     }
 
     render() {
@@ -69,7 +69,7 @@ export default class QuestionSuccessNotify extends Component {
         });
         let positionLine = this.state.positionLine.interpolate({
             inputRange: [0, 1, 3],
-            outputRange: [-width / 2, -width/4, 0]
+            outputRange: [-width / 2, -width / 4, 0]
         });
         const { xValue, positionIcon, scalePoint } = this.state;
         return (
@@ -85,13 +85,13 @@ export default class QuestionSuccessNotify extends Component {
                         <Text style={styles.flagItem}>/</Text>
                     </Animated.View>
                     <Animated.View style={[styles.line, { left: positionLine }]}></Animated.View>
-                    <Animated.View style={[styles.circlePoint, { 
-                            backgroundColor: bgColor,
-                            transform: [
-                                { translateY: -17 },
-                                { scale: scalePoint }
-                            ]
-                        }]}>
+                    <Animated.View style={[styles.circlePoint, {
+                        backgroundColor: bgColor,
+                        transform: [
+                            { translateY: -17 },
+                            { scale: scalePoint }
+                        ]
+                    }]}>
                         <Text style={[styles.text, { color: WHITE_COLOR }]}>+</Text>
                         <Icon
                             name='bolt'

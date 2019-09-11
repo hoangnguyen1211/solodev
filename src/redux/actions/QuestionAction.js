@@ -12,6 +12,9 @@ export const fetchQuestion = (lessonId) => {
                     }
                 });
             })
+            .then(() => {
+                dispatch(fetchQuestionByIndex(0))
+            })
             .catch(error => {
                 dispatch({
                     type: types.FECTH_QUESTION_ERROR,
@@ -29,5 +32,11 @@ export const fetchQuestionByIndex = (index) => {
         payload: {
             index: index
         }
+    }
+}
+
+export const fetchQuestionCurrent = () => {
+    return {
+        type: types.FECTH_QUESTION_CURRENT
     }
 }
