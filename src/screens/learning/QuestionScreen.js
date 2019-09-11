@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/QuestionAction';
 import { ButtonQuestion, ProcessBar } from '../../components/question';
 import { AsyncStorageGetData } from '../../asyncstorage/AsyncStorage';
-import { LESSON_ID, QUESTION_INDEX } from '../../constants/StorageConstants';
+import { LESSON_ID } from '../../constants/StorageConstants';
+import { SINGLE_ANSWER_SCREEN, MULTI_ANSWER_SCREEN, DRAG_SORT_ANSWER_SCREEN } from '../../constants/ScreenConstants';
 
 class QuestionScreen extends Component {
     constructor(props) {
@@ -28,30 +29,31 @@ class QuestionScreen extends Component {
         const { navigation, question } = this.props;
         switch (question.type) {
             case 'single':
-                return navigation.navigate('SingleAnswerScreen');
+                return navigation.navigate(SINGLE_ANSWER_SCREEN);
             case 'multi':
-                return navigation.navigate('MultiAnswerScreen');
+                return navigation.navigate(MULTI_ANSWER_SCREEN);
             case 'drag':
-                return navigation.navigate('');
+                return navigation.navigate(DRAG_SORT_ANSWER_SCREEN);
             default:
                 break;
         }
     }
 
     render() {
-        const { question } = this.props;
+        const { question, currentIndex, questionTotal } = this.props;
+        const widthBar = Math.ceil((currentIndex + 1) / questionTotal * 90);
         return (
             <View style={styles.container}>
-                <ProcessBar widthBar={10} />
+                <ProcessBar widthBar={widthBar} />
                 <View style={styles.wrapper}>
                     <Text style={styles.documentStyle}>
                         {question ? question.document : ""}
                     </Text>
-
                 </View>
                 <ButtonQuestion
                     iconName="arrow-right"
                     funcHandler={this._onToExercise}
+                    disabled={true}
                     styleContainer={{
                         position: 'absolute',
                         bottom: 40,
@@ -80,11 +82,10 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-    console.log(state);
-    
     return {
         question: state.questionReducer.question,
-        currentIndex: state.questionReducer.currentIndex
+        currentIndex: state.questionReducer.currentIndex,
+        questionTotal: state.questionReducer.listCount
     }
 }
 

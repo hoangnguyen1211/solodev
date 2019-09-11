@@ -5,9 +5,10 @@ import { Icon } from 'react-native-elements';
 
 export default ButtonQuestion = (props) => {
     const { funcHandler, styleContainer, backgroundColor, disabled, iconName } = props;
+
     return (
         <View style={[styles.container, styleContainer]}>
-            <TouchableOpacity onPress={() => disabled ? _ => _ : funcHandler() }>
+            <TouchableOpacity onPress={() => disabled ? funcHandler() : _ => _ }>
                 <View style={[styles.wapper, {  backgroundColor: backgroundColor ? backgroundColor : GREEN_COLOR }]}>
                     <Icon
                         name={iconName}

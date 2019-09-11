@@ -1,16 +1,16 @@
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { 
-    QuestionScreen, 
-    ExerciseScreen, 
+    QuestionScreen,
     SingleAnswerScreen , 
-    MultiAnswerScreen
+    MultiAnswerScreen,
+    DragSortAnswerScreen
 } from '../screens/learning';
 
 const QuestionSwitch = createSwitchNavigator({
     QuestionScreen,
-    ExerciseScreen,
     SingleAnswerScreen,
-    MultiAnswerScreen
+    MultiAnswerScreen,
+    DragSortAnswerScreen
 });
 
 export default createAppContainer(QuestionSwitch);

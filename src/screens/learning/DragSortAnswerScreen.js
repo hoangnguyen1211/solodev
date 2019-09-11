@@ -1,13 +1,13 @@
 import React, { Component, createRef } from 'react';
 import { View, Text, StyleSheet, Alert } from 'react-native';
-import { RadioAnswer, ProcessBar, ButtonQuestion, QuestionSuccessNotify, QuestionErrorNotify } from '../../components/question';
+import { CheckBoxAnswer, ProcessBar, ButtonQuestion, QuestionSuccessNotify, QuestionErrorNotify } from '../../components/question';
 import { FONT_NORMAL } from '../../constants/FontConstants';
 import { SKY_COLOR } from '../../constants/ColorConstants';
 import { QUESTION_SCREEN } from '../../constants/ScreenConstants';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/QuestionAction';
 
-class SingleAnswerScreen extends Component {
+class MultiAnswerScreen extends Component {
 
     constructor(props) {
         super(props);
@@ -66,7 +66,8 @@ class SingleAnswerScreen extends Component {
         const { selected, question } = this.state;
         const { currentIndex, questionTotal } = this.props;
         const widthBar = Math.ceil((currentIndex + 1) / questionTotal * 90);
-        
+        const answers = question.answers ? question.answers : [];
+        answers.sort((item1, item2) => Math.random() - Math.random());
         return (
             <View style={styles.container}>
                 <ProcessBar widthBar={widthBar} />
@@ -74,7 +75,7 @@ class SingleAnswerScreen extends Component {
                     <Text style={styles.questionStyle}>
                         {question.exercise}
                     </Text>
-                    <RadioAnswer
+                    <CheckBoxAnswer
                         renderItems={question.answers}
                         funcHandler={this._onSelectdAnswer}
                     />
@@ -114,7 +115,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleAnswerScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(MultiAnswerScreen);
 
 const styles = StyleSheet.create({
     container: {

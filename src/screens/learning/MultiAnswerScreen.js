@@ -12,7 +12,9 @@ class MultiAnswerScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            checkedValue: false
+            checkedValue: false,
+            selected: false,
+            question: this.props.question
         }
 
         this.errorComponent = createRef();
@@ -21,7 +23,8 @@ class MultiAnswerScreen extends Component {
 
     _onSelectdAnswer = (value) => {
         this.setState({
-            checkedValue: value
+            checkedValue: value,
+            selected: true
         })
     }
 
@@ -36,33 +39,49 @@ class MultiAnswerScreen extends Component {
 
     _onNextQuestion = () => {
         const { navigation, questionTotal, currentIndex, getQuestionByIndex } = this.props;
-        if (currentIndex < questionTotal) {
+        if ((currentIndex + 1) < questionTotal) {
             getQuestionByIndex(currentIndex + 1);
             navigation.navigate(QUESTION_SCREEN);
         }
-        else if(currentIndex < questionTotal){
+        else if((currentIndex + 1) === questionTotal){
             Alert.alert('SUCCESS');
         }
     }
 
+    /**
+     * Phương thức random câu hỏi liên quan khi user trả lời sai
+     * Người tạo: Nguyễn Tiến Hoàng
+     */
+    _onRandomQuestion = () => {
+        // Lấy ra danh sách câu hỏi liên quan
+        const relatedQuetions = this.props.question.relatedExercises;
+        // Thực hiện random => Lấy ra câu hỏi đầu tiên
+        relatedQuetions.sort((item1, item2) => Math.random() - Math.random());
+        this.setState({
+            question: relatedQuetions[0]
+        })
+    }
+
     render() {
-        const { checkedValue } = this.state;
-        const { question } = this.props;
+        const { selected, question } = this.state;
+        const { currentIndex, questionTotal } = this.props;
+        const widthBar = Math.ceil((currentIndex + 1) / questionTotal * 90);
+        
         return (
             <View style={styles.container}>
-                <ProcessBar widthBar={10} />
+                <ProcessBar widthBar={widthBar} />
                 <View style={styles.wrapper}>
                     <Text style={styles.questionStyle}>
                         {question.exercise}
                     </Text>
                     <CheckBoxAnswer
-                        renderItems={question.answers ? question.answers : []}
+                        renderItems={question.answers}
                         funcHandler={this._onSelectdAnswer}
                     />
                 </View>
                 <ButtonQuestion
                     iconName="check"
-                    disabled={checkedValue === '' ? true : false}
+                    disabled={selected}
                     funcHandler={this._onAnswerChecked}
                     backgroundColor={SKY_COLOR}
                     styleContainer={{
@@ -72,7 +91,7 @@ class MultiAnswerScreen extends Component {
                     }}
                 />
 
-                <QuestionErrorNotify ref={this.errorComponent} />
+                <QuestionErrorNotify ref={this.errorComponent} funcHandler={this._onRandomQuestion} />
                 <QuestionSuccessNotify funcHandler={this._onNextQuestion} ref={this.sucessComponent} />
             </View>
         )

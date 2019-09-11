@@ -272,81 +272,81 @@
         "relatedExercises": [
           {
             "id": "1",
-            "content": "Related Question 01",
+            "exercise": "Related Question 01",
             "orderIndex": "1",
             "answers": [
               {
                 "id": 1,
-                "name": "Answer 01",
+                "name": "Answer 05",
                 "status": "false"
               },
               {
                 "id": 2,
-                "name": "Answer 02",
+                "name": "Answer 06",
                 "status": "false"
               },
               {
                 "id": 3,
-                "name": "Answer 03",
+                "name": "Answer 07",
                 "status": "true"
               },
               {
                 "id": 4,
-                "name": "Answer 04",
-                "status": "false"
-              }
-            ]
-          },
-          {
-            "id": "3",
-            "content": "Related Question 03",
-            "orderIndex": "3",
-            "answers": [
-              {
-                "id": 1,
-                "name": "Answer 01",
-                "status": "false"
-              },
-              {
-                "id": 2,
-                "name": "Answer 02",
-                "status": "false"
-              },
-              {
-                "id": 3,
-                "name": "Answer 03",
-                "status": "true"
-              },
-              {
-                "id": 4,
-                "name": "Answer 04",
+                "name": "Answer 08",
                 "status": "false"
               }
             ]
           },
           {
             "id": "2",
-            "content": "Related Question 02",
-            "orderIndex": "2",
+            "exercise": "Related Question 02",
+            "orderIndex": "3",
             "answers": [
               {
                 "id": 1,
-                "name": "Answer 01",
+                "name": "Answer 09",
                 "status": "false"
               },
               {
                 "id": 2,
-                "name": "Answer 02",
+                "name": "Answer 10",
                 "status": "false"
               },
               {
                 "id": 3,
-                "name": "Answer 03",
+                "name": "Answer 11",
                 "status": "true"
               },
               {
                 "id": 4,
-                "name": "Answer 04",
+                "name": "Answer 12",
+                "status": "false"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "exercise": "Related Question 03",
+            "orderIndex": "3",
+            "answers": [
+              {
+                "id": 1,
+                "name": "Answer 13",
+                "status": "false"
+              },
+              {
+                "id": 2,
+                "name": "Answer 14",
+                "status": "false"
+              },
+              {
+                "id": 3,
+                "name": "Answer 15",
+                "status": "true"
+              },
+              {
+                "id": 4,
+                "name": "Answer 16",
                 "status": "false"
               }
             ]
@@ -386,82 +386,212 @@
         "relatedExercises": [
           {
             "id": "1",
-            "content": "Related Question 01",
+            "exercise": "Related Question 01",
             "orderIndex": "1",
             "answers": [
               {
                 "id": 1,
-                "name": "Answer 01",
+                "name": "Answer 05",
                 "status": "false"
               },
               {
                 "id": 2,
-                "name": "Answer 02",
-                "status": "false"
+                "name": "Answer 06",
+                "status": "true"
               },
               {
                 "id": 3,
-                "name": "Answer 03",
+                "name": "Answer 07",
                 "status": "true"
               },
               {
                 "id": 4,
-                "name": "Answer 04",
-                "status": "false"
-              }
-            ]
-          },
-          {
-            "id": "3",
-            "content": "Related Question 03",
-            "orderIndex": "3",
-            "answers": [
-              {
-                "id": 1,
-                "name": "Answer 01",
-                "status": "false"
-              },
-              {
-                "id": 2,
-                "name": "Answer 02",
-                "status": "false"
-              },
-              {
-                "id": 3,
-                "name": "Answer 03",
-                "status": "true"
-              },
-              {
-                "id": 4,
-                "name": "Answer 04",
+                "name": "Answer 08",
                 "status": "false"
               }
             ]
           },
           {
             "id": "2",
-            "content": "Related Question 02",
+            "exercise": "Related Question 02",
+            "orderIndex": "3",
+            "answers": [
+              {
+                "id": 1,
+                "name": "Answer 09",
+                "status": "false"
+              },
+              {
+                "id": 2,
+                "name": "Answer 10",
+                "status": "false"
+              },
+              {
+                "id": 3,
+                "name": "Answer 11",
+                "status": "true"
+              },
+              {
+                "id": 4,
+                "name": "Answer 12",
+                "status": "true"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "exercise": "Related Question 03",
+            "orderIndex": "3",
+            "answers": [
+              {
+                "id": 1,
+                "name": "Answer 13",
+                "status": "true"
+              },
+              {
+                "id": 2,
+                "name": "Answer 14",
+                "status": "true"
+              },
+              {
+                "id": 3,
+                "name": "Answer 15",
+                "status": "true"
+              },
+              {
+                "id": 4,
+                "name": "Answer 16",
+                "status": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "document": "With ES6 generators, we have a different kind of function, which may be paused in the middle, one or many times, and resumed later, allowin...With ES6 generators, we have a different kind of function, which may be paused in the middle, one or many times, and resumed later, allowin...With ES6 generators, we have a different kind of function, which may be paused in the middle, one or many times, and resumed later, allowin...",
+        "exercise": "A closing tag tells the web browser we want to finish displaying a webpage. To create a closing tag, we simply include a / sign after the <. Can you add the closing tag for this HTML tag?",
+        "orderIndex": "3",
+        "lessonId": "1",
+        "type": "drag",
+        "status": "false",
+        "answers": [
+          {
+            "id": 1,
+            "name": "Answer 01",
+            "status": "false",
+            "orderIndex": "1"
+          },
+          {
+            "id": 2,
+            "name": "Answer 02",
+            "status": "false",
+            "orderIndex": "4"
+          },
+          {
+            "id": 3,
+            "name": "Answer 03",
+            "status": "true",
+            "orderIndex": "3"
+          },
+          {
+            "id": 4,
+            "name": "Answer 04",
+            "status": "true",
+            "orderIndex": "2"
+          }
+        ],
+        "relatedExercises": [
+          {
+            "id": "1",
+            "exercise": "Related Question 01",
+            "orderIndex": "1",
+            "answers": [
+              {
+                "id": 1,
+                "name": "Answer 01",
+                "status": "false",
+                "orderIndex": "1"
+              },
+              {
+                "id": 2,
+                "name": "Answer 02",
+                "status": "false",
+                "orderIndex": "3"
+              },
+              {
+                "id": 3,
+                "name": "Answer 03",
+                "status": "true",
+                "orderIndex": "4"
+              },
+              {
+                "id": 4,
+                "name": "Answer 04",
+                "status": "false",
+                "orderIndex": "2"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "exercise": "Related Question 03",
+            "orderIndex": "3",
+            "answers": [
+              {
+                "id": 1,
+                "name": "Answer 01",
+                "status": "false",
+                "orderIndex": "3"
+              },
+              {
+                "id": 2,
+                "name": "Answer 02",
+                "status": "false",
+                "orderIndex": "2"
+              },
+              {
+                "id": 3,
+                "name": "Answer 03",
+                "status": "true",
+                "orderIndex": "1"
+              },
+              {
+                "id": 4,
+                "name": "Answer 04",
+                "status": "false",
+                "orderIndex": "4"
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "exercise": "Related Question 02",
             "orderIndex": "2",
             "answers": [
               {
                 "id": 1,
                 "name": "Answer 01",
-                "status": "false"
+                "status": "false",
+                "orderIndex": "4"
               },
               {
                 "id": 2,
                 "name": "Answer 02",
-                "status": "false"
+                "status": "false",
+                "orderIndex": "3"
               },
               {
                 "id": 3,
                 "name": "Answer 03",
-                "status": "true"
+                "status": "true",
+                "orderIndex": "1"
               },
               {
                 "id": 4,
                 "name": "Answer 04",
-                "status": "false"
+                "status": "false",
+                "orderIndex": "2"
               }
             ]
           }

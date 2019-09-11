@@ -26,4 +26,6 @@ export const SETTING_SCREEN = "SettingScreen";
 export const COURSE_SCREEN = "CourseScreen";
 export const LESSON_SCREEN = "LessonScreen";
 export const QUESTION_SCREEN = "QuestionScreen";
-export const EXERCISE_SCREEN = "ExerciseScreen";
+export const SINGLE_ANSWER_SCREEN = "SingleAnswerScreen";
+export const MULTI_ANSWER_SCREEN = "MultiAnswerScreen";
+export const DRAG_SORT_ANSWER_SCREEN = "DragSortAnswerScreen";

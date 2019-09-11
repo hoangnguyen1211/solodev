@@ -24,7 +24,7 @@ class DragSortQuestion extends Component {
         const { funcHandler } = this.props;
         let status = true;
         for (let index = 0; index < data.length; index++) {
-            if(data[index + 1] !== result[index]){
+            if((index + 1) !== JSON.parse(data[index].orderIndex)){
                 status = false;
                 break;
             }

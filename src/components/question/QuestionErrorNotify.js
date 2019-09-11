@@ -59,6 +59,8 @@ export default class QuestionErrorNotify extends Component {
             scalePoint: new Animated.Value(0),
             message: ''
         });
+
+        this.props.funcHandler();
     }
 
     render() {
@@ -101,6 +103,7 @@ export default class QuestionErrorNotify extends Component {
                     iconName="arrow-down"
                     funcHandler={this._hideErrorNotify}
                     backgroundColor={RED_COLOR}
+                    disabled={true}
                     styleContainer={{ justifyContent: 'flex-end', marginRight: 20 }}
                 />
             </Animated.View>

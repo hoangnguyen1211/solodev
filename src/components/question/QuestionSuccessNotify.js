@@ -105,6 +105,7 @@ export default class QuestionSuccessNotify extends Component {
                 <ButtonQuestion
                     iconName="arrow-right"
                     funcHandler={this._hideSuccessNotify}
+                    disabled={true}
                     styleContainer={{ justifyContent: 'flex-end', marginRight: 20 }}
                 />
             </Animated.View>

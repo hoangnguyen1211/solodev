@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { GREEN_COLOR , WHITE_COLOR, BLACK_COLOR } from '../../constants/ColorConstants';
+import { GREEN_COLOR, WHITE_COLOR, BLACK_COLOR } from '../../constants/ColorConstants';
 import { FONT_TEXT } from '../../constants/FontConstants';
 
 export default class RadioAnswer extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             checkedIndex: -1
@@ -14,14 +14,13 @@ export default class RadioAnswer extends Component {
 
     _onSelected = (item, index) => {
         const { funcHandler } = this.props;
-        
         this.setState({
             checkedIndex: index
         });
         funcHandler(JSON.parse(item.status));
     }
 
-    render(){
+    render() {
         const { renderItems } = this.props;
         const { checkedIndex } = this.state;
         return (
@@ -29,8 +28,8 @@ export default class RadioAnswer extends Component {
                 {
                     renderItems.map((item, index) => {
                         return <TouchableOpacity onPress={() => this._onSelected(item, index)} key={index}>
-                            <View style={[styles.itemAnswer, index ===  checkedIndex ? styles.itemChecked :  {} ]}>
-                                <View style={[styles.circle, index ===  checkedIndex ? styles.circleChecked :  {} ]}></View>
+                            <View style={[styles.itemAnswer, index === checkedIndex ? styles.itemChecked : {}]}>
+                                <View style={[styles.circle, index === checkedIndex ? styles.circleChecked : {}]}></View>
                                 <Text style={[styles.itemLabel]}>
                                     {item.name}
                                 </Text>
@@ -41,7 +40,7 @@ export default class RadioAnswer extends Component {
             </View>
         )
     }
-    
+
 }
 
 const styles = StyleSheet.create({
@@ -59,7 +58,7 @@ const styles = StyleSheet.create({
     },
     itemLabel: {
         fontSize: FONT_TEXT,
-        color:  BLACK_COLOR,
+        color: BLACK_COLOR,
         marginLeft: 10
     },
     circle: {

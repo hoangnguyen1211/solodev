@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { GREEN_COLOR, WHITE_COLOR, BLACK_COLOR } from '../../constants/ColorConstants';
 import { FONT_TEXT } from '../../constants/FontConstants';
 import { Icon } from 'react-native-elements';
 
-export default class CheckBoxAnswer extends PureComponent {
+export default class CheckBoxAnswer extends Component {
 
     constructor(props) {
         super(props);
@@ -52,7 +52,6 @@ export default class CheckBoxAnswer extends PureComponent {
 
     render() {
         const { renderItems } = this.state;
-        console.log('TEST');
         
         return (
             <View style={styles.container}>
