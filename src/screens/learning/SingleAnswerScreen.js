@@ -64,15 +64,15 @@ class SingleAnswerScreen extends Component {
 
     render() {
         const { selected, question } = this.state;
-        const { currentIndex, questionTotal } = this.props;
+        const { currentIndex, questionTotal, navigation } = this.props;
         const widthBar = Math.ceil((currentIndex + 1) / questionTotal * 90);
         
         return (
             <View style={styles.container}>
-                <ProcessBar widthBar={widthBar} />
+                <ProcessBar widthBar={widthBar} navigation={navigation}/>
                 <View style={styles.wrapper}>
                     <Text style={styles.questionStyle}>
-                        {question.exercise}
+                        {question.quizz}
                     </Text>
                     <RadioAnswer
                         renderItems={question.answers}

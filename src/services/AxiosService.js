@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { Alert } from 'react-native';
-import { API_ENDPOINT } from '../constants/ApiConstaints';
 
 class AxiosService {
     constructor() {
@@ -35,7 +34,7 @@ class AxiosService {
     }
 
     get(url) {
-        return this.instance.get(`${API_ENDPOINT}/${url}`);
+        return this.instance.get(``);
     }
 }
 

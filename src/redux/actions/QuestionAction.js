@@ -4,11 +4,11 @@ import { getQuestionByLessonIdService } from '../../services/QuestionService';
 export const fetchQuestion = (lessonId) => {
     return dispatch => {
         return getQuestionByLessonIdService(lessonId)
-            .then(res => {
+            .then(response => {
                 dispatch({
                     type: types.FECTH_QUESTION_SUCCESS,
                     payload: {
-                        data: res.data
+                        data: response
                     }
                 });
             })
@@ -16,12 +16,7 @@ export const fetchQuestion = (lessonId) => {
                 dispatch(fetchQuestionByIndex(0))
             })
             .catch(error => {
-                dispatch({
-                    type: types.FECTH_QUESTION_ERROR,
-                    payload: {
-                        error: error
-                    }
-                })
+                console.log(error);
             })
     }
 }

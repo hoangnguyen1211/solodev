@@ -16,9 +16,9 @@ const questionReducer = (state = initialState, action) => {
                 listQuestion: data,
                 listCount: data.length
             };
-        case types.FECTH_QUESTION_ERROR:
-            return {...state};
         case types.FECTH_QUESTION_BY_INDEX:
+            console.log(state);
+            
             let question = {};
             state.listQuestion.forEach((item, index) => {
                 if(index === action.payload.index) {

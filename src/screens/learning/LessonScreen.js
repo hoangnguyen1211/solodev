@@ -4,6 +4,8 @@ import { LessonList } from '../../components/learning';
 import { COURSE_BACKGROUND } from '../../constants/ColorConstants';
 import { getCourseByCourseIdService } from '../../services/LessonService';
 import { HeaderText } from '../../components/screen';
+import { AsyncStorageSetData, AsyncStorageGetData } from '../../asyncstorage/AsyncStorage';
+import { LEARNING_PROCESS } from '../../constants/StorageConstants';
 
 export default class LessonScreen extends Component {
   static navigationOptions = {
@@ -19,11 +21,11 @@ export default class LessonScreen extends Component {
   componentDidMount(){
     const courseId = this.props.navigation.getParam('courseId');
     // Lấy danh sách khoá học theo chủ đề
-    getCourseByCourseIdService(courseId)
-    .then(response => {
-        this.setState({lessons: response ? response.data : []});
+    this.setState({lessons: getCourseByCourseIdService(courseId)});
+    AsyncStorageGetData(LEARNING_PROCESS)
+    .then(obj => {
+      AsyncStorageSetData(LEARNING_PROCESS, { ...obj, courseId: courseId })
     })
-    .catch(error => console.log(error));
 }
 
   render() {

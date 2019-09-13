@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/QuestionAction';
 import { ButtonQuestion, ProcessBar } from '../../components/question';
 import { AsyncStorageGetData } from '../../asyncstorage/AsyncStorage';
-import { LESSON_ID } from '../../constants/StorageConstants';
+import { LEARNING_PROCESS } from '../../constants/StorageConstants';
 import { SINGLE_ANSWER_SCREEN, MULTI_ANSWER_SCREEN, DRAG_SORT_ANSWER_SCREEN } from '../../constants/ScreenConstants';
 
 class QuestionScreen extends Component {
@@ -17,9 +17,11 @@ class QuestionScreen extends Component {
     componentDidMount = async () => {
         const { getListQuestionByLessonId, currentIndex } = this.props;
         if(currentIndex === 0){
-            AsyncStorageGetData(LESSON_ID)
-            .then(lessonId => {
-                getListQuestionByLessonId(lessonId);
+            AsyncStorageGetData(LEARNING_PROCESS)
+            .then(obj => {
+                console.log(obj);
+                
+                getListQuestionByLessonId(obj.lessonId);
             })
             .catch(error => console.log(error));
         }
@@ -40,11 +42,11 @@ class QuestionScreen extends Component {
     }
 
     render() {
-        const { question, currentIndex, questionTotal } = this.props;
+        const { question, currentIndex, questionTotal, navigation } = this.props;
         const widthBar = Math.ceil((currentIndex + 1) / questionTotal * 90);
         return (
             <View style={styles.container}>
-                <ProcessBar widthBar={widthBar} />
+                <ProcessBar widthBar={widthBar} navigation={navigation} />
                 <View style={styles.wrapper}>
                     <Text style={styles.documentStyle}>
                         {question ? question.document : ""}

@@ -24,17 +24,10 @@ export default class LearnScreen extends Component {
 
     componentDidMount(){
         // Lấy danh sách chủ đề
-        getAllTopicService()
-        .then(response => {
-            this.setState({topics: response ? response.data : []});
-        })
-        .catch(error => console.log(error));
-        // Lấy danh sách khoá học của tôi
-        getMyCourseService()
-        .then(response => {
-            this.setState({mycourses: response ? response.data : []});
-        })
-        .catch(error => console.log(error));
+        this.setState({
+            mycourses: getMyCourseService(),
+            topics: getAllTopicService() 
+        });
     }
 
     onSearch = value => {

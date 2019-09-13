@@ -1,3 +1,2 @@
 export const LANGUAGE_STORAGE = "LANGUAGE_STORAGE";
-
-export const LESSON_ID = "LESSON_ID";
+export const LEARNING_PROCESS = "LEARNING_PROCESS";

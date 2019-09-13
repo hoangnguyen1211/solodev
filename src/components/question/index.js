@@ -5,6 +5,7 @@ import ProcessBar from './ProcessBar';
 import QuestionSuccessNotify from './QuestionSuccessNotify';
 import QuestionErrorNotify from './QuestionErrorNotify';
 import DragSortQuestion from './DragSortQuestion';
+import QuestionWinNotify from './QuestionWinNotify';
 
 export {
     ButtonQuestion,
@@ -13,5 +14,6 @@ export {
     ProcessBar,
     QuestionSuccessNotify,
     QuestionErrorNotify,
+    QuestionWinNotify,
     DragSortQuestion
 }

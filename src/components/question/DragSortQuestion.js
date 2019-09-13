@@ -8,16 +8,6 @@ class DragSortQuestion extends Component {
 
     constructor(props){
         super(props);
-        this.state = {
-            answers: []
-        }
-    }
-
-    componentDidMount = () => {
-        const { renderItems } = this.props;
-        this.setState({
-            answers: renderItems
-        })
     }
 
     _checkAnswer = (data) => {
@@ -29,11 +19,10 @@ class DragSortQuestion extends Component {
                 break;
             }
         }
-        this.setState({ answers: data });
-        funcHandler(status);
+        funcHandler(data, status);
     }
 
-    renderItem = ({ item, index, move, moveEnd, isActive }) => {
+    _renderItem = ({ item, index, move, moveEnd, isActive }) => {
         const activeStyle = isActive ? {
             backgroundColor: SKY_COLOR,
             color: WHITE_COLOR
@@ -57,8 +46,8 @@ class DragSortQuestion extends Component {
             <Fragment>
                 <DraggableFlatList
                     contentContainerStyle={{paddingHorizontal: 20}}
-                    data={this.state.answers}
-                    renderItem={this.renderItem}
+                    data={this.props.items}
+                    renderItem={this._renderItem}
                     keyExtractor={(item, index) => `draggable-item-${index}`}
                     scrollPercent={2}
                     onMoveEnd={({ data }) => this._checkAnswer(data)}

@@ -242,7 +242,7 @@
       {
         "id": "1",
         "document": "With ES6 generators, we have a different kind of function, which may be paused in the middle, one or many times, and resumed later, allowin...With ES6 generators, we have a different kind of function, which may be paused in the middle, one or many times, and resumed later, allowin...With ES6 generators, we have a different kind of function, which may be paused in the middle, one or many times, and resumed later, allowin...",
-        "exercise": "A closing tag tells the web browser we want to finish displaying a webpage. To create a closing tag, we simply include a / sign after the <. Can you add the closing tag for this HTML tag?",
+        "quizz": "A closing tag tells the web browser we want to finish displaying a webpage. To create a closing tag, we simply include a / sign after the <. Can you add the closing tag for this HTML tag?",
         "orderIndex": "1",
         "lessonId": "1",
         "type": "single",
@@ -272,7 +272,7 @@
         "relatedExercises": [
           {
             "id": "1",
-            "exercise": "Related Question 01",
+            "quizz": "Related Question 01",
             "orderIndex": "1",
             "answers": [
               {
@@ -356,7 +356,7 @@
       {
         "id": "2",
         "document": "With ES6 generators, we have a different kind of function, which may be paused in the middle, one or many times, and resumed later, allowin...With ES6 generators, we have a different kind of function, which may be paused in the middle, one or many times, and resumed later, allowin...With ES6 generators, we have a different kind of function, which may be paused in the middle, one or many times, and resumed later, allowin...",
-        "exercise": "A closing tag tells the web browser we want to finish displaying a webpage. To create a closing tag, we simply include a / sign after the <. Can you add the closing tag for this HTML tag?",
+        "quizz": "A closing tag tells the web browser we want to finish displaying a webpage. To create a closing tag, we simply include a / sign after the <. Can you add the closing tag for this HTML tag?",
         "orderIndex": "2",
         "lessonId": "1",
         "type": "multi",
@@ -386,7 +386,7 @@
         "relatedExercises": [
           {
             "id": "1",
-            "exercise": "Related Question 01",
+            "quizz": "Related Question 01",
             "orderIndex": "1",
             "answers": [
               {
@@ -413,7 +413,7 @@
           },
           {
             "id": "2",
-            "exercise": "Related Question 02",
+            "quizz": "Related Question 02",
             "orderIndex": "3",
             "answers": [
               {
@@ -440,7 +440,7 @@
           },
           {
             "id": "3",
-            "exercise": "Related Question 03",
+            "quizz": "Related Question 03",
             "orderIndex": "3",
             "answers": [
               {
@@ -470,7 +470,7 @@
       {
         "id": "3",
         "document": "With ES6 generators, we have a different kind of function, which may be paused in the middle, one or many times, and resumed later, allowin...With ES6 generators, we have a different kind of function, which may be paused in the middle, one or many times, and resumed later, allowin...With ES6 generators, we have a different kind of function, which may be paused in the middle, one or many times, and resumed later, allowin...",
-        "exercise": "A closing tag tells the web browser we want to finish displaying a webpage. To create a closing tag, we simply include a / sign after the <. Can you add the closing tag for this HTML tag?",
+        "quizz": "A closing tag tells the web browser we want to finish displaying a webpage. To create a closing tag, we simply include a / sign after the <. Can you add the closing tag for this HTML tag?",
         "orderIndex": "3",
         "lessonId": "1",
         "type": "drag",
@@ -486,7 +486,7 @@
             "id": 2,
             "name": "Answer 02",
             "status": "false",
-            "orderIndex": "4"
+            "orderIndex": "2"
           },
           {
             "id": 3,
@@ -498,13 +498,13 @@
             "id": 4,
             "name": "Answer 04",
             "status": "true",
-            "orderIndex": "2"
+            "orderIndex": "4"
           }
         ],
         "relatedExercises": [
           {
             "id": "1",
-            "exercise": "Related Question 01",
+            "quizz": "Related Question 01",
             "orderIndex": "1",
             "answers": [
               {
@@ -535,7 +535,7 @@
           },
           {
             "id": "3",
-            "exercise": "Related Question 03",
+            "quizz": "Related Question 03",
             "orderIndex": "3",
             "answers": [
               {
@@ -566,7 +566,7 @@
           },
           {
             "id": "2",
-            "exercise": "Related Question 02",
+            "quizz": "Related Question 02",
             "orderIndex": "2",
             "answers": [
               {

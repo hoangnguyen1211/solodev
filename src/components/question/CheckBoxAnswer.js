@@ -8,21 +8,10 @@ export default class CheckBoxAnswer extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            renderItems: []
-        }
-    }
-
-    componentDidMount = () => {
-        const { renderItems } = this.props;
-        this.setState({
-            renderItems: renderItems
-        })
     }
 
     _onSelected = (item, index) => {
-        const { renderItems } = this.state;
-        const { funcHandler } = this.props;
+        const { funcHandler, renderItems } = this.props;
         let result = true;
 
         // Hàm cập nhật lại trạng thái checked cho từng phần tử
@@ -36,10 +25,6 @@ export default class CheckBoxAnswer extends Component {
             // Nếu không trùng vị trí index thì không cập nhật
             return { ...element, checked: (element.checked ? element.checked : false) }
         });
-        // Cập nhật lại mảng
-        this.setState({
-            renderItems: newArray
-        });
         
         for(let i = 0; i < newArray.length; i++){
             if(newArray[i].checked !== JSON.parse(newArray[i].status)){
@@ -47,11 +32,11 @@ export default class CheckBoxAnswer extends Component {
                 break;
             }
         }
-        funcHandler(result);
+        funcHandler(newArray, result);
     }
 
     render() {
-        const { renderItems } = this.state;
+        const { renderItems } = this.props;
         
         return (
             <View style={styles.container}>

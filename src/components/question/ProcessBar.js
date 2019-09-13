@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, StyleSheet, Alert } from 'react-native';
 import { GREEN_COLOR } from '../../constants/ColorConstants';
+import { AsyncStorageGetData } from '../../asyncstorage/AsyncStorage';
+import { LEARNING_PROCESS } from '../../constants/StorageConstants';
+import { LESSON_SCREEN } from '../../constants/ScreenConstants';
 import { Icon } from 'react-native-elements';
 
 export default ProcessBar = (props) => {
@@ -8,7 +11,13 @@ export default ProcessBar = (props) => {
     const { widthBar, styleContainer, navigation } = props;
 
     _goBackCourse = () => {
-        
+        AsyncStorageGetData(LEARNING_PROCESS)
+            .then(obj => {
+                navigation.navigate(LESSON_SCREEN, {
+                    courseId: obj.courseId
+                })
+            })
+            .catch(error => console.log(error));
     }
 
     return (
@@ -18,7 +27,7 @@ export default ProcessBar = (props) => {
                 type='font-awesome'
                 color='#999'
                 size={23}
-                onPress={ () => _goBackCourse() } />
+                onPress={() => _goBackCourse()} />
             <View style={styles.wapper}>
                 <View style={[styles.processBar, { width: widthBar ? `${widthBar}%` : '0%' }]}></View>
             </View>
@@ -27,7 +36,7 @@ export default ProcessBar = (props) => {
                 type='font-awesome'
                 color='#999'
                 size={20}
-                onPress={() => Alert.alert("WIN")} />
+            />
         </View>
     )
 }

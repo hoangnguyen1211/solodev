@@ -1,6 +1,10 @@
-import axiosService from './AxiosService';
-import { API_TOPIC } from '../constants/ApiConstaints';
+import data from '../database/db';
 
 export const getAllTopicService = () => {
-    return axiosService.get(API_TOPIC);
+    try {
+        return data.topics;
+    } catch (error) {
+        console.log(error)
+    }
+    return [];
 }

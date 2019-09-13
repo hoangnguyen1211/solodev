@@ -21,10 +21,11 @@ class MultiAnswerScreen extends Component {
         this.sucessComponent = createRef();
     }
 
-    _onSelectdAnswer = (value) => {
+    _onSelectedAnswer = (arrayAnswers, value) => {
         this.setState({
             checkedValue: value,
-            selected: true
+            selected: true,
+            question: { ...this.state.question, answers: arrayAnswers }
         })
     }
 
@@ -64,19 +65,19 @@ class MultiAnswerScreen extends Component {
 
     render() {
         const { selected, question } = this.state;
-        const { currentIndex, questionTotal } = this.props;
+        const { currentIndex, questionTotal, navigation } = this.props;
         const widthBar = Math.ceil((currentIndex + 1) / questionTotal * 90);
         
         return (
             <View style={styles.container}>
-                <ProcessBar widthBar={widthBar} />
+                <ProcessBar widthBar={widthBar} navigation={navigation} />
                 <View style={styles.wrapper}>
                     <Text style={styles.questionStyle}>
-                        {question.exercise}
+                        {question.quizz}
                     </Text>
                     <CheckBoxAnswer
                         renderItems={question.answers}
-                        funcHandler={this._onSelectdAnswer}
+                        funcHandler={this._onSelectedAnswer}
                     />
                 </View>
                 <ButtonQuestion

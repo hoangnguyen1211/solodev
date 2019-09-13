@@ -1,13 +1,20 @@
 import React, { Component, createRef } from 'react';
 import { View, Text, StyleSheet, Alert } from 'react-native';
-import { CheckBoxAnswer, ProcessBar, ButtonQuestion, QuestionSuccessNotify, QuestionErrorNotify } from '../../components/question';
+import { 
+    DragSortQuestion, 
+    ProcessBar, 
+    ButtonQuestion, 
+    QuestionSuccessNotify, 
+    QuestionErrorNotify,
+    QuestionWinNotify
+} from '../../components/question';
 import { FONT_NORMAL } from '../../constants/FontConstants';
 import { SKY_COLOR } from '../../constants/ColorConstants';
 import { QUESTION_SCREEN } from '../../constants/ScreenConstants';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/QuestionAction';
 
-class MultiAnswerScreen extends Component {
+class DragSortAnswerScreen extends Component {
 
     constructor(props) {
         super(props);
@@ -16,15 +23,24 @@ class MultiAnswerScreen extends Component {
             selected: false,
             question: this.props.question
         }
-
         this.errorComponent = createRef();
         this.sucessComponent = createRef();
+        this.winnerComponent = createRef();
     }
 
-    _onSelectdAnswer = (value) => {
+    componentDidMount = () => {
+        const { question } = this.state;
+        question.answers.sort((item1, item2) => Math.random() - Math.random());
+        this.setState({
+            question
+        })
+    }
+
+    _onSelectdAnswer = (arrayAnsers, value) => {
         this.setState({
             checkedValue: value,
-            selected: true
+            selected: true,
+            question: { ...this.state.question, answers:  arrayAnsers }
         })
     }
 
@@ -43,8 +59,8 @@ class MultiAnswerScreen extends Component {
             getQuestionByIndex(currentIndex + 1);
             navigation.navigate(QUESTION_SCREEN);
         }
-        else if((currentIndex + 1) === questionTotal){
-            Alert.alert('SUCCESS');
+        else if ((currentIndex + 1) === questionTotal) {
+            this.winnerComponent.current._showOverlayNotify();
         }
     }
 
@@ -57,29 +73,31 @@ class MultiAnswerScreen extends Component {
         const relatedQuetions = this.props.question.relatedExercises;
         // Thực hiện random => Lấy ra câu hỏi đầu tiên
         relatedQuetions.sort((item1, item2) => Math.random() - Math.random());
+        // Random đáp án trước khi render ra giao diện cho người dùng chọn
+        const question = relatedQuetions[0];
+        question.answers.sort((item1, item2) => Math.random() - Math.random());
+        // Cập nhật lại câu hỏi của state
         this.setState({
-            question: relatedQuetions[0]
+            question
         })
     }
 
     render() {
         const { selected, question } = this.state;
-        const { currentIndex, questionTotal } = this.props;
+        const { currentIndex, questionTotal, navigation } = this.props;
         const widthBar = Math.ceil((currentIndex + 1) / questionTotal * 90);
-        const answers = question.answers ? question.answers : [];
-        answers.sort((item1, item2) => Math.random() - Math.random());
         return (
             <View style={styles.container}>
-                <ProcessBar widthBar={widthBar} />
+                <ProcessBar widthBar={widthBar} navigation={navigation} />
                 <View style={styles.wrapper}>
                     <Text style={styles.questionStyle}>
-                        {question.exercise}
+                        {question.quizz}
                     </Text>
-                    <CheckBoxAnswer
-                        renderItems={question.answers}
-                        funcHandler={this._onSelectdAnswer}
-                    />
                 </View>
+                <DragSortQuestion
+                    items={question.answers}
+                    funcHandler={this._onSelectdAnswer}
+                />
                 <ButtonQuestion
                     iconName="check"
                     disabled={selected}
@@ -94,6 +112,7 @@ class MultiAnswerScreen extends Component {
 
                 <QuestionErrorNotify ref={this.errorComponent} funcHandler={this._onRandomQuestion} />
                 <QuestionSuccessNotify funcHandler={this._onNextQuestion} ref={this.sucessComponent} />
+                <QuestionWinNotify ref={this.winnerComponent} />
             </View>
         )
     }
@@ -115,7 +134,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MultiAnswerScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(DragSortAnswerScreen);
 
 const styles = StyleSheet.create({
     container: {

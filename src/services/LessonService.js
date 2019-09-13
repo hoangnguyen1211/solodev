@@ -1,7 +1,11 @@
-import axiosService from './AxiosService';
-import { API_LESSON } from '../constants/ApiConstaints';
+import data from '../database/db';
 
 // Lấy danh sách bài học theo khoá học
 export const getCourseByCourseIdService = (courseId) => {
-    return axiosService.get(`${API_LESSON}?courseId=${courseId}`);
+    try {
+        return data.lessons.filter(x => x.id = courseId);
+    } catch (error) {
+        console.log(error)
+    }
+    return [];
 }

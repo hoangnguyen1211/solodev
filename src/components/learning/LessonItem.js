@@ -3,20 +3,23 @@ import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-nati
 import { QUESTION_NAVIGATOR } from '../../constants/ScreenConstants';
 import { COURSE_BACKGROUND, GREEN_COLOR, WHITE_COLOR, BLUE_COLOR } from '../../constants/ColorConstants';
 import { Icon } from 'react-native-elements';
-import { AsyncStorageSetData } from '../../asyncstorage/AsyncStorage';
-import { LESSON_ID } from '../../constants/StorageConstants';
+import { AsyncStorageSetData, AsyncStorageGetData } from '../../asyncstorage/AsyncStorage';
+import { LEARNING_PROCESS } from '../../constants/StorageConstants';
 
 export default LessonItem = (props) => {
   const { lesson, navigation } = props;
   const { width } = Dimensions.get('window');
 
   const _navigateQuestionScreen = () => {
-    AsyncStorageSetData(LESSON_ID, lesson.id)
+    AsyncStorageGetData(LEARNING_PROCESS)
+    .then(obj => {
+      AsyncStorageSetData(LEARNING_PROCESS, { ...obj, lessonId: lesson.id })
       .then(() => {
         // Chuyển qua mà hình câu hỏi
         navigation.navigate(QUESTION_NAVIGATOR);
       })
       .catch(error => console.log(error));
+    });
   }
 
   const getProcess = () => {

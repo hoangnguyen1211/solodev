@@ -4,6 +4,8 @@ import ImageBackgroud from '../../assets/images/background.jpg';
 import { CourseList } from '../../components/learning';
 import { getCourseByTopicIdService } from '../../services/CourseService';
 import { HeaderText } from '../../components/screen';
+import { AsyncStorageSetData } from '../../asyncstorage/AsyncStorage';
+import { LEARNING_PROCESS } from '../../constants/StorageConstants';
 
 export default class CourseScreen extends Component {
     static navigationOptions = {
@@ -19,11 +21,11 @@ export default class CourseScreen extends Component {
     componentDidMount(){
         const topicId = this.props.navigation.getParam('id');
         // Lấy danh sách khoá học theo chủ đề
-        getCourseByTopicIdService(topicId)
-        .then(response => {
-            this.setState({courses: response ? response.data : []});
-        })
-        .catch(error => console.log(error));
+        this.setState({courses: getCourseByTopicIdService(topicId)});
+        AsyncStorageSetData(LEARNING_PROCESS, {
+            topicId: topicId
+        });
+
     }
 
     render() {
