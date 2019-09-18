@@ -1,5 +1,5 @@
 import React, { Component, createRef } from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { 
     DragSortQuestion, 
     ProcessBar, 
@@ -9,7 +9,7 @@ import {
     QuestionWinNotify
 } from '../../components/question';
 import { FONT_NORMAL } from '../../constants/FontConstants';
-import { SKY_COLOR } from '../../constants/ColorConstants';
+import { ORANGE_COLOR } from '../../constants/ColorConstants';
 import { QUESTION_SCREEN } from '../../constants/ScreenConstants';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/QuestionAction';
@@ -21,11 +21,11 @@ class DragSortAnswerScreen extends Component {
         this.state = {
             checkedValue: false,
             selected: false,
-            question: this.props.question
+            question: this.props.question,
+            winVisible: false
         }
         this.errorComponent = createRef();
         this.sucessComponent = createRef();
-        this.winnerComponent = createRef();
     }
 
     componentDidMount = () => {
@@ -36,10 +36,10 @@ class DragSortAnswerScreen extends Component {
         })
     }
 
-    _onSelectdAnswer = (arrayAnsers, value) => {
+    _onSelectdAnswer = (arrayAnsers, value, status) => {
         this.setState({
             checkedValue: value,
-            selected: true,
+            selected: status,
             question: { ...this.state.question, answers:  arrayAnsers }
         })
     }
@@ -60,7 +60,9 @@ class DragSortAnswerScreen extends Component {
             navigation.navigate(QUESTION_SCREEN);
         }
         else if ((currentIndex + 1) === questionTotal) {
-            this.winnerComponent.current._showOverlayNotify();
+            this.setState({
+                winVisible: true
+            })
         }
     }
 
@@ -83,7 +85,7 @@ class DragSortAnswerScreen extends Component {
     }
 
     render() {
-        const { selected, question } = this.state;
+        const { selected, question, winVisible } = this.state;
         const { currentIndex, questionTotal, navigation } = this.props;
         const widthBar = Math.ceil((currentIndex + 1) / questionTotal * 90);
         return (
@@ -91,18 +93,19 @@ class DragSortAnswerScreen extends Component {
                 <ProcessBar widthBar={widthBar} navigation={navigation} />
                 <View style={styles.wrapper}>
                     <Text style={styles.questionStyle}>
-                        {question.quizz}
+                        {question.quiz}
                     </Text>
                 </View>
                 <DragSortQuestion
                     items={question.answers}
+                    hint={question.hint}
                     funcHandler={this._onSelectdAnswer}
                 />
                 <ButtonQuestion
                     iconName="check"
                     disabled={selected}
                     funcHandler={this._onAnswerChecked}
-                    backgroundColor={SKY_COLOR}
+                    backgroundColor={ORANGE_COLOR}
                     styleContainer={{
                         position: 'absolute',
                         bottom: 40,
@@ -112,7 +115,7 @@ class DragSortAnswerScreen extends Component {
 
                 <QuestionErrorNotify ref={this.errorComponent} funcHandler={this._onRandomQuestion} />
                 <QuestionSuccessNotify funcHandler={this._onNextQuestion} ref={this.sucessComponent} />
-                <QuestionWinNotify ref={this.winnerComponent} />
+                <QuestionWinNotify visible={winVisible} navigation={navigation} />
             </View>
         )
     }

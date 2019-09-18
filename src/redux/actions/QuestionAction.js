@@ -8,7 +8,7 @@ export const fetchQuestion = (lessonId) => {
                 dispatch({
                     type: types.FECTH_QUESTION_SUCCESS,
                     payload: {
-                        data: response
+                        data: response.sort((item1, item2) => Math.random() - Math.random())
                     }
                 });
             })
@@ -18,6 +18,12 @@ export const fetchQuestion = (lessonId) => {
             .catch(error => {
                 console.log(error);
             })
+    }
+}
+
+export const refreshQuestionAll = () => {
+    return {
+        type: types.REFRESH_QUESTION_ALL
     }
 }
 
@@ -33,5 +39,11 @@ export const fetchQuestionByIndex = (index) => {
 export const fetchQuestionCurrent = () => {
     return {
         type: types.FECTH_QUESTION_CURRENT
+    }
+}
+
+export const refreshQuestionCurrentIndex = () => {
+    return {
+        type: types.REFESH_QUESTION_CURENT_INDEX
     }
 }

@@ -29,3 +29,4 @@ export const QUESTION_SCREEN = "QuestionScreen";
 export const SINGLE_ANSWER_SCREEN = "SingleAnswerScreen";
 export const MULTI_ANSWER_SCREEN = "MultiAnswerScreen";
 export const DRAG_SORT_ANSWER_SCREEN = "DragSortAnswerScreen";
+export const ENTER_ANSWER_SCREEN = "EnterAnswerScreen";

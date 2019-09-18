@@ -1,14 +1,20 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { WHITE_COLOR, BLACK_COLOR } from '../../constants/ColorConstants';
+import { Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { WHITE_COLOR, BLACK_COLOR, GRADIENT_COLOR } from '../../constants/ColorConstants';
+import LinearGradient from 'react-native-linear-gradient';
 
 export default LanguageButton = (props) => {
     const { language, children, funcHandler } = props;
     return (
-        <TouchableOpacity onPress={ () => funcHandler(language) }>
-            <View style={ styles.buttonStyle }>
-                <Text style={ styles.labelStyle }>{ children }</Text>
-            </View>
+        <TouchableOpacity onPress={() => funcHandler(language)}>
+            <LinearGradient 
+                colors={GRADIENT_COLOR} 
+                start={{ x: 0, y: 0 }} 
+                end={{ x: 1, y: 0 }} 
+                style={styles.buttonStyle}
+            >
+                <Text style={styles.labelStyle}>{children}</Text>
+            </LinearGradient>
         </TouchableOpacity>
     )
 }
@@ -27,7 +33,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 3 }
     },
     labelStyle: {
-        color: BLACK_COLOR,
+        color: WHITE_COLOR,
         textAlign: 'center',
         fontWeight: '600'
     }

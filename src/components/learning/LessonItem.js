@@ -5,33 +5,30 @@ import { COURSE_BACKGROUND, GREEN_COLOR, WHITE_COLOR, BLUE_COLOR } from '../../c
 import { Icon } from 'react-native-elements';
 import { AsyncStorageSetData, AsyncStorageGetData } from '../../asyncstorage/AsyncStorage';
 import { LEARNING_PROCESS } from '../../constants/StorageConstants';
+import { connect } from 'react-redux';
+import * as actions from '../../redux/actions/QuestionAction';
 
-export default LessonItem = (props) => {
-  const { lesson, navigation } = props;
+const LessonItem = (props) => {
+  const { lesson } = props;
   const { width } = Dimensions.get('window');
 
   const _navigateQuestionScreen = () => {
+    // Lấy thông tin từ Async Store
     AsyncStorageGetData(LEARNING_PROCESS)
     .then(obj => {
+      // Kiểm tra nêú lessonId thay đổi
+      if(obj.lessonId && (obj.lessonId !== lesson.id)){
+        // Gọi redux đặt lại mặc định cho state của question reducer
+        refeshQuestionAll();
+      }
+      // Thêm lessonId vào object trong Async Store
       AsyncStorageSetData(LEARNING_PROCESS, { ...obj, lessonId: lesson.id })
       .then(() => {
         // Chuyển qua mà hình câu hỏi
-        navigation.navigate(QUESTION_NAVIGATOR);
+        props.navigation.navigate(QUESTION_NAVIGATOR);
       })
       .catch(error => console.log(error));
     });
-  }
-
-  const getProcess = () => {
-    if (lesson.isActive == 'true' && lesson.status == 'true') {
-      return renderBox(WHITE_COLOR, GREEN_COLOR, 'check', true);
-    }
-    else if (lesson.isActive == 'false' && lesson.status == 'true') {
-      return renderBox(WHITE_COLOR, BLUE_COLOR, 'loop', true);
-    }
-    else {
-      return renderBox('#ddd', '#999', 'lock', false);
-    }
   }
 
   const renderBox = (wapperBG, iconBG, iconName, isRedirect) => {
@@ -53,12 +50,34 @@ export default LessonItem = (props) => {
     )
   }
 
+  const getProcess = () => {
+    if (lesson.isActive == 'true' && lesson.status == 'true') {
+      return renderBox(WHITE_COLOR, GREEN_COLOR, 'check', true);
+    }
+    else if (lesson.isActive == 'false' && lesson.status == 'true') {
+      return renderBox(WHITE_COLOR, BLUE_COLOR, 'loop', true);
+    }
+    else {
+      return renderBox('#ddd', '#999', 'lock', false);
+    }
+  }
+
   return (
     <View style={[styles.container]}>
       {getProcess()}
     </View>
   )
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+      refeshQuestionAll: () => {
+          dispatch(actions.refreshQuestionAll());
+      }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(LessonItem);
 
 const styles = StyleSheet.create({
   container: {

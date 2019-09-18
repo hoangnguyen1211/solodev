@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { ButtonForm, InputForm, TextForm } from '../../components/form';
+import { ButtonForm, InputForm, TextForm, TitleForm } from '../../components/form';
 import { STYLE_CONTAINER, STYLE_WAPPER } from '../../constants/StyleConstants';
-import { WHITE_COLOR } from '../../constants/ColorConstants';
+import { WHITE_COLOR, RED_COLOR, BLACK_COLOR } from '../../constants/ColorConstants';
 import { SIGN_UP_SCREEN, SIGN_IN_SCREEN } from '../../constants/ScreenConstants';
 import { TextI18n } from '../../components/language';
 
@@ -39,11 +39,15 @@ export default class ChangePasswordScreen extends Component {
             <View style={[STYLE_CONTAINER]}>
                 <View style={[STYLE_WAPPER]}>
 
+                    <TitleForm style={styles.titleStyle}>
+                        Đổi mật khẩu
+                    </TitleForm>
+
                     <InputForm
                         placeholder="Code"
                         type="text"
                         name="code"
-                        style={{textAlign: 'center'}}
+                        style={{ textAlign: 'center' }}
                         funcHandler={this._changeInputHandler}
                     />
 
@@ -85,6 +89,12 @@ export default class ChangePasswordScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+    titleStyle: {
+        color: BLACK_COLOR,
+        textTransform: 'uppercase',
+        textAlign: 'center',
+        marginBottom: 25
+    },
     textSignUp: {
         flexDirection: 'row',
         justifyContent: 'center',
@@ -92,7 +102,7 @@ const styles = StyleSheet.create({
         marginBottom: 25
     },
     signUpNow: {
-        color: WHITE_COLOR,
+        color: RED_COLOR,
         textTransform: 'uppercase',
         fontWeight: '600',
         marginLeft: 5

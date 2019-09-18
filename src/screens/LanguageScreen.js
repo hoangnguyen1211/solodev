@@ -33,7 +33,7 @@ export default class LanguageScreen extends Component {
             <View style={[ STYLE_CONTAINER, styles.container ]}>
                 <View style={[ STYLE_WAPPER, styles.wapper ]}>
                     <TitleForm style={styles.title}>
-                        Select display language
+                        Display language
                     </TitleForm>
                     <TextForm style={styles.text}>
                         Selecting the right language for you will help the application display exactly what you need.
@@ -59,7 +59,8 @@ export default class LanguageScreen extends Component {
 const styles = StyleSheet.create({
     title: {
         textAlign: "center",
-        marginBottom: 10
+        marginBottom: 20,
+        textTransform: 'uppercase'
     },
     text: {
         textAlign: "center",

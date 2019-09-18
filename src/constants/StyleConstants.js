@@ -1,7 +1,7 @@
-import { APP_COLOR } from './ColorConstants';
+import { WHITE_COLOR } from './ColorConstants';
 export const STYLE_CONTAINER = {
     flex: 1,
-    backgroundColor: APP_COLOR,
+    backgroundColor: WHITE_COLOR,
     alignItems: 'center',
     justifyContent: 'center'
 }

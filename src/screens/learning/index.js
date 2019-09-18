@@ -4,6 +4,7 @@ import QuestionScreen from './QuestionScreen';
 import SingleAnswerScreen from './SingleAnswerScreen';
 import MultiAnswerScreen from './MultiAnswerScreen';
 import DragSortAnswerScreen from './DragSortAnswerScreen';
+import EnterAnswerScreen from './EnterAnswerScreen';
 
 export {
     CourseScreen,
@@ -11,5 +12,6 @@ export {
     QuestionScreen,
     SingleAnswerScreen,
     MultiAnswerScreen,
-    DragSortAnswerScreen
+    DragSortAnswerScreen,
+    EnterAnswerScreen
 }

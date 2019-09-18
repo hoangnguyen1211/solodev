@@ -6,6 +6,7 @@ import QuestionSuccessNotify from './QuestionSuccessNotify';
 import QuestionErrorNotify from './QuestionErrorNotify';
 import DragSortQuestion from './DragSortQuestion';
 import QuestionWinNotify from './QuestionWinNotify';
+import EnterAnswer from './EnterAnswer';
 
 export {
     ButtonQuestion,
@@ -15,5 +16,6 @@ export {
     QuestionSuccessNotify,
     QuestionErrorNotify,
     QuestionWinNotify,
-    DragSortQuestion
+    DragSortQuestion,
+    EnterAnswer
 }

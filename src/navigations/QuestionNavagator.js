@@ -3,14 +3,16 @@ import {
     QuestionScreen,
     SingleAnswerScreen , 
     MultiAnswerScreen,
-    DragSortAnswerScreen
+    DragSortAnswerScreen,
+    EnterAnswerScreen
 } from '../screens/learning';
 
 const QuestionSwitch = createSwitchNavigator({
     QuestionScreen,
     SingleAnswerScreen,
     MultiAnswerScreen,
-    DragSortAnswerScreen
+    DragSortAnswerScreen,
+    EnterAnswerScreen
 });
 
 export default createAppContainer(QuestionSwitch);

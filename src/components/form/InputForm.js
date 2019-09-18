@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
-import { WHITE_COLOR, BLACK_COLOR } from '../../constants/ColorConstants';
+import { GRAY_COLOR, SKY_COLOR } from '../../constants/ColorConstants';
 
 export default InputForm = (props) => {
 
@@ -28,10 +28,9 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 20,
         paddingHorizontal: 20,
-        backgroundColor: WHITE_COLOR,
-        borderColor: '#f2f2f2',
-        shadowColor: BLACK_COLOR,
-        shadowOpacity: 0.3,
-        shadowOffset: { width: 0, height: 3 }
+        backgroundColor: "#dedede",
+        shadowColor: '#f2f2f2',
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 0.3
     }
 })

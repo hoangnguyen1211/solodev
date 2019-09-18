@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TitleForm, ButtonForm, InputForm, TextForm } from '../../components/form';
 import { STYLE_CONTAINER, STYLE_WAPPER } from '../../constants/StyleConstants';
-import { WHITE_COLOR } from '../../constants/ColorConstants';
+import { BLACK_COLOR } from '../../constants/ColorConstants';
 import { CHANGE_PASSWORD_SCREEN } from '../../constants/ScreenConstants';
 
 export default class ForgotPasswordScreen extends Component {
@@ -30,7 +30,7 @@ export default class ForgotPasswordScreen extends Component {
                 <View style={[STYLE_WAPPER]}>
 
                     <TitleForm style={styles.titleStyle}>
-                        SIGN UP FREE
+                        Xác thực
                     </TitleForm>
 
                     <InputForm
@@ -56,7 +56,7 @@ export default class ForgotPasswordScreen extends Component {
 
 const styles = StyleSheet.create({
     titleStyle: {
-        color: WHITE_COLOR,
+        color: BLACK_COLOR,
         textTransform: 'uppercase',
         textAlign: 'center',
         marginBottom: 25

@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { ButtonForm, InputForm, TextForm } from '../../components/form';
 import { STYLE_CONTAINER, STYLE_WAPPER } from '../../constants/StyleConstants';
 import { WHITE_COLOR } from '../../constants/ColorConstants';
-import { CONFIRM_SCREEN } from '../../constants/ScreenConstants';
+import { APP_NAVIGATOR } from '../../constants/ScreenConstants';
 import { TextI18n } from '../../components/language';
 
 export default class ExperienceScreen extends Component {
@@ -41,7 +41,7 @@ export default class ExperienceScreen extends Component {
 
     _submitHandler = () => {
         const { navigation } = this.props;
-        navigation.navigate(CONFIRM_SCREEN);
+        navigation.navigate(APP_NAVIGATOR);
     }
 
     render() {
@@ -84,7 +84,8 @@ const styles = StyleSheet.create({
     },
     questionStyle: {
         textAlign: 'center',
-        marginBottom: 20
+        marginBottom: 30,
+        fontWeight: '600'
     },
     noteStyle: {
         textAlign: 'center',

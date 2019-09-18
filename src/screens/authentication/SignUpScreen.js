@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { TitleForm, ButtonForm, InputForm, TextForm } from '../../components/form';
 import { STYLE_CONTAINER, STYLE_WAPPER } from '../../constants/StyleConstants';
-import { WHITE_COLOR } from '../../constants/ColorConstants';
+import { WHITE_COLOR, RED_COLOR, BLACK_COLOR } from '../../constants/ColorConstants';
 import { JOB_SCREEN, SIGN_IN_SCREEN } from '../../constants/ScreenConstants';
 import { TextI18n } from '../../components/language';
 
@@ -82,10 +82,10 @@ export default class SignInScreen extends Component {
 
 const styles = StyleSheet.create({
     titleStyle: {
-        color: WHITE_COLOR,
+        color: BLACK_COLOR,
         textTransform: 'uppercase',
         textAlign: 'center',
-        marginBottom: 20
+        marginBottom: 30
     },
     textSignUp: {
         flexDirection: 'row',
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         marginTop: 30
     },
     signUpNow: {
-        color: WHITE_COLOR,
+        color: RED_COLOR,
         textTransform: 'uppercase',
         fontWeight: '600',
         marginLeft: 5

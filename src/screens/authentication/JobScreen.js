@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     noteStyle: {
         textAlign: 'center',
         paddingHorizontal: '10%',
-        marginBottom: 30
+        marginBottom: 30,
+        fontWeight: '600'
     }
 })

@@ -7,7 +7,12 @@ import * as actions from '../../redux/actions/QuestionAction';
 import { ButtonQuestion, ProcessBar } from '../../components/question';
 import { AsyncStorageGetData } from '../../asyncstorage/AsyncStorage';
 import { LEARNING_PROCESS } from '../../constants/StorageConstants';
-import { SINGLE_ANSWER_SCREEN, MULTI_ANSWER_SCREEN, DRAG_SORT_ANSWER_SCREEN } from '../../constants/ScreenConstants';
+import { 
+    SINGLE_ANSWER_SCREEN, 
+    MULTI_ANSWER_SCREEN, 
+    DRAG_SORT_ANSWER_SCREEN,
+    ENTER_ANSWER_SCREEN
+} from '../../constants/ScreenConstants';
 
 class QuestionScreen extends Component {
     constructor(props) {
@@ -16,14 +21,12 @@ class QuestionScreen extends Component {
 
     componentDidMount = async () => {
         const { getListQuestionByLessonId, currentIndex } = this.props;
-        if(currentIndex === 0){
+        if (currentIndex == 0) {
             AsyncStorageGetData(LEARNING_PROCESS)
-            .then(obj => {
-                console.log(obj);
-                
-                getListQuestionByLessonId(obj.lessonId);
-            })
-            .catch(error => console.log(error));
+                .then(obj => {
+                    getListQuestionByLessonId(obj.lessonId);
+                })
+                .catch(error => console.log(error));
         }
     }
 
@@ -36,6 +39,8 @@ class QuestionScreen extends Component {
                 return navigation.navigate(MULTI_ANSWER_SCREEN);
             case 'drag':
                 return navigation.navigate(DRAG_SORT_ANSWER_SCREEN);
+            case 'enter':
+                return navigation.navigate(ENTER_ANSWER_SCREEN);
             default:
                 break;
         }

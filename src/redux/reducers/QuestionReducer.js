@@ -9,35 +9,39 @@ const initialState = {
 
 const questionReducer = (state = initialState, action) => {
     switch (action.type) {
+        case types.REFRESH_QUESTION_ALL:
+            return {
+                ...state,
+                listQuestion: [],
+                question: {},
+                listCount: 0,
+                currentIndex: 0
+            };
         case types.FECTH_QUESTION_SUCCESS:
             const { data } = action.payload;
-            return { 
-                ...state, 
+            return {
+                ...state,
                 listQuestion: data,
                 listCount: data.length
             };
         case types.FECTH_QUESTION_BY_INDEX:
-            console.log(state);
-            
             let question = {};
             state.listQuestion.forEach((item, index) => {
-                if(index === action.payload.index) {
+                if (index === action.payload.index) {
                     question = { ...item };
                 }
             });
-            return { 
-                ...state, 
+            return {
+                ...state,
                 question,
                 currentIndex: action.payload.index
             };
         case types.FECTH_QUESTION_CURRENT:
-                console.log('CURRENT');
-                console.log({ 
-                    ...state
-                });
-            return { ...state};
+            return { ...state };
+        case types.REFESH_QUESTION_CURENT_INDEX:
+            return { ...state, currentIndex: 0 };
         default:
-            return {...state};
+            return { ...state };
     }
 }
 

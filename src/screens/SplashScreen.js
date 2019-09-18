@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { APP_COLOR } from '../constants/ColorConstants';
+import { GRADIENT_COLOR } from '../constants/ColorConstants';
 import { LANGUAGE_SCREEN } from '../constants/ScreenConstants';
+import LinearGradient from 'react-native-linear-gradient';
 
 const WELCOME_TEXT = 'SOLO DEV';
 
@@ -27,11 +28,14 @@ class SplashScreen extends Component {
 
     render() {
         return (
-            <View style={styles.viewStyles}>
+            <LinearGradient
+                style={styles.viewStyles}
+                colors={GRADIENT_COLOR}
+            >
                 <Text style={styles.textStyles}>
                     {WELCOME_TEXT}
                 </Text>
-            </View>
+            </LinearGradient>
         );
     }
 }
@@ -40,8 +44,7 @@ const styles = StyleSheet.create({
     viewStyles: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: APP_COLOR
+        justifyContent: 'center'
     },
     textStyles: {
         color: 'white',

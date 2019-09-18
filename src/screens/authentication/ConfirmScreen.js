@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { ButtonForm, InputForm, TextForm } from '../../components/form';
 import { STYLE_CONTAINER, STYLE_WAPPER } from '../../constants/StyleConstants';
-import { WHITE_COLOR } from '../../constants/ColorConstants';
+import { WHITE_COLOR, RED_COLOR, BLACK_COLOR } from '../../constants/ColorConstants';
 import { SIGN_UP_SCREEN } from '../../constants/ScreenConstants';
 import { TextI18n } from '../../components/language';
 
@@ -47,8 +47,8 @@ export default class ConfirmScreen extends Component {
                     />
 
                     <View style={styles.textSignUp}>
-                        <TextForm>
-                            <TextI18n langKey={'not-code'} />
+                        <TextForm style={{ textAlign: 'center' }}>
+                            <TextI18n langKey={'not-code'}/>
                         </TextForm>
                         <TouchableOpacity onPress={() => this._onReSendCode()}>
                             <TextForm style={styles.signUpNow}>
@@ -68,7 +68,7 @@ export default class ConfirmScreen extends Component {
 
 const styles = StyleSheet.create({
     titleStyle: {
-        color: WHITE_COLOR,
+        color: BLACK_COLOR,
         textTransform: 'uppercase',
         textAlign: 'center',
         marginBottom: 25
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         marginBottom: 25
     },
     signUpNow: {
-        color: WHITE_COLOR,
+        color: RED_COLOR,
         textTransform: 'uppercase',
         fontWeight: '600',
         marginLeft: 5

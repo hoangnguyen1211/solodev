@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { WHITE_COLOR, GRAY_COLOR } from '../../constants/ColorConstants';
+import { WHITE_COLOR, GRAY_COLOR, GRADIENT_COLOR } from '../../constants/ColorConstants';
 import { TextForm } from './';
 
 export default class RadioForm extends Component {
@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 40,
         borderRadius: 20,
-        borderColor: WHITE_COLOR,
+        backgroundColor: '#dedede',
+        borderColor: '#dedede',
         borderWidth: 1,
         paddingHorizontal: 15,
         marginBottom: 10
@@ -59,24 +60,17 @@ const styles = StyleSheet.create({
     itemCircle: {
         width: 20,
         height: 20,
-        borderColor: WHITE_COLOR,
+        borderColor: GRAY_COLOR,
         borderRadius: 10,
-        borderWidth: 3
+        borderWidth: 2
     },
     itemLabel: {
-        color: WHITE_COLOR,
+        color: GRAY_COLOR,
         fontWeight: '600',
         marginLeft: 10
     },
     itemCircleChecked: {
-        // borderColor: GRAY_COLOR,
         borderWidth: 6
-    },
-    itemWrapperChecked: {
-        backgroundColor: GRAY_COLOR
     }
-    // itemLabelChecked: {
-    //     color: GRAY_COLOR
-    // },
 })
 

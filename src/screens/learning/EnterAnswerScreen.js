@@ -1,20 +1,20 @@
 import React, { Component, createRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { 
-    RadioAnswer, 
-    ProcessBar, 
-    ButtonQuestion, 
-    QuestionSuccessNotify, 
+import {
+    EnterAnswer,
+    ProcessBar,
+    ButtonQuestion,
+    QuestionSuccessNotify,
     QuestionErrorNotify,
     QuestionWinNotify
 } from '../../components/question';
-import { FONT_NORMAL } from '../../constants/FontConstants';
+import { FONT_TEXT } from '../../constants/FontConstants';
 import { ORANGE_COLOR } from '../../constants/ColorConstants';
 import { QUESTION_SCREEN } from '../../constants/ScreenConstants';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/QuestionAction';
 
-class SingleAnswerScreen extends Component {
+class EnterAnswerScreen extends Component {
 
     constructor(props) {
         super(props);
@@ -25,50 +25,33 @@ class SingleAnswerScreen extends Component {
             winVisible: false
         }
 
-        // Hốt SuccessComponnent và ErrorComponent ra xài
         this.errorComponent = createRef();
         this.sucessComponent = createRef();
     }
 
-    /**
-     * Hàm set giá trị cho checkedValue khi người dùng click chọn đáp án
-     * Nguyễn Tiến Hoàng
-     */
-    _onSelectdAnswer = (status, value) => {
+    _onSelectedAnswer = (value, status) => {
         this.setState({
             checkedValue: value,
             selected: status
         })
     }
 
-    /**
-     * Hàm kiểm tra câu trả lời của người dùng
-     * Nguyễn Tiến Hoàng
-     */
     _onAnswerChecked = () => {
-        // Nếu đúng thì show animation success lên
         if (this.state.checkedValue) {
             this.sucessComponent.current._showSuccessNotify();
         }
-        else { // Nếu sai show animation error lên
+        else {
             this.errorComponent.current._showErrorNotify(this.props.question.explain);
         }
     }
 
-    /**
-     * Hàm chuyển qua câu tiếp theo
-     * Nguyễn Tiến Hoàng
-     */
     _onNextQuestion = () => {
         const { navigation, questionTotal, currentIndex, getQuestionByIndex } = this.props;
-        // Kiểm tra xem đã là câu cuối cùng trong mảng chưa
-        // Nếu chưa thì qua câu kế tiếp
         if ((currentIndex + 1) < questionTotal) {
             getQuestionByIndex(currentIndex + 1);
             navigation.navigate(QUESTION_SCREEN);
         }
-        // Nếu đã là câu cuối cùng rồi thì show màn hình chiến thắng lên
-        else if((currentIndex + 1) === questionTotal){
+        else if ((currentIndex + 1) === questionTotal) {
             this.setState({
                 winVisible: true
             })
@@ -82,9 +65,8 @@ class SingleAnswerScreen extends Component {
     _onRandomQuestion = () => {
         // Lấy ra danh sách câu hỏi liên quan
         const relatedQuetions = this.props.question.relatedExercises;
-        // Thực hiện random
+        // Thực hiện random => Lấy ra câu hỏi đầu tiên
         relatedQuetions.sort((item1, item2) => Math.random() - Math.random());
-        // => Lấy ra câu hỏi đầu tiên
         this.setState({
             question: relatedQuetions[0]
         })
@@ -94,20 +76,21 @@ class SingleAnswerScreen extends Component {
         const { selected, question, winVisible } = this.state;
         const { currentIndex, questionTotal, navigation } = this.props;
         const widthBar = Math.ceil((currentIndex + 1) / questionTotal * 90);
-        
+
         return (
             <View style={styles.container}>
-                <ProcessBar widthBar={widthBar} navigation={navigation}/>
+                <ProcessBar widthBar={widthBar} navigation={navigation} />
                 <View style={styles.wrapper}>
                     <Text style={styles.questionStyle}>
-                        {question.quiz}
+                        Điền từ còn thiếu vào chỗ trống.
                     </Text>
-                    <RadioAnswer
-                        renderItems={question.answers}
-                        hint={question.hint}
-                        funcHandler={this._onSelectdAnswer}
-                    />
                 </View>
+                <EnterAnswer
+                    answers={question.answers}
+                    quiz={question.quiz}
+                    hints={question.hint}
+                    funcHandler={this._onSelectedAnswer}
+                />
                 <ButtonQuestion
                     iconName="check"
                     disabled={selected}
@@ -144,7 +127,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleAnswerScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(EnterAnswerScreen);
 
 const styles = StyleSheet.create({
     container: {
@@ -155,7 +138,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20
     },
     questionStyle: {
-        fontSize: FONT_NORMAL,
+        fontSize: FONT_TEXT,
         marginBottom: 20
     }
 });
