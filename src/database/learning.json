@@ -1,0 +1,14 @@
+{
+    "learning": [
+        {
+            "courseId": "1",
+            "lessonId": "1",
+            "questionId": "1"
+        },
+        {
+            "courseId": "1",
+            "lessonId": "2",
+            "questionId": "1"
+        }
+    ]
+}

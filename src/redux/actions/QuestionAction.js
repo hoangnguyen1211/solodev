@@ -5,10 +5,11 @@ export const fetchQuestion = (lessonId) => {
     return dispatch => {
         return getQuestionByLessonIdService(lessonId)
             .then(response => {
+                const results = response.sort((item1, item2) => Math.random() - Math.random());
                 dispatch({
                     type: types.FECTH_QUESTION_SUCCESS,
                     payload: {
-                        data: response.sort((item1, item2) => Math.random() - Math.random())
+                        data: results
                     }
                 });
             })
